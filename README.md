@@ -45,14 +45,8 @@ PORT=3000
 ```
 
 
-4. **Start MongoDB:**
-```bash
-sudo systemctl start mongod
 
-```
-
-
-5. **Run the application:**
+4. **Run the application:**
 ```bash
 node app.js
 
