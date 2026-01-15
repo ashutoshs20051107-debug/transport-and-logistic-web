@@ -1,0 +1,87 @@
+<%- include('partials/header') %>
+
+<section class="hero" style="background: var(--primary); padding: 4rem 0; min-height: auto; text-align: center; color: white;">
+    <div class="container">
+        <h1>Shipment Tracker</h1>
+        <p>Check the live status of your delivery using your unique Tracking ID.</p>
+    </div>
+</section>
+
+<section class="container" style="padding: 4rem 1.5rem;">
+    <div style="max-width: 600px; margin: 0 auto;">
+        <form action="/tracking/search" method="POST" style="display: flex; gap: 10px; background: white; padding: 10px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <input type="text" name="trackingId" placeholder="Paste your 24-character Tracking ID here..." required 
+                   style="flex: 1; padding: 1rem; border: none; outline: none; font-size: 1rem;">
+            <button type="submit" class="btn cta-btn" style="padding: 0 2rem; border-radius: 8px;">Track Now</button>
+        </form>
+
+        <% if (error) { %>
+            <div style="margin-top: 2rem; padding: 1rem; background: #fee2e2; color: #991b1b; border-radius: 8px; text-align: center; border: 1px solid #f87171;">
+                <strong>⚠️ Note:</strong> <%= error %>
+            </div>
+        <% } %>
+    </div>
+
+    <% if (shipment) { %>
+        <div class="service-card" style="max-width: 750px; margin: 4rem auto; border-top: 5px solid var(--primary); background: white; padding: 2.5rem; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; border-bottom: 1px solid #eee; padding-bottom: 1rem;">
+                <h2 style="color: var(--primary);">Shipment Found</h2>
+                <span style="background: <%= (shipment.status === 'Delivered') ? '#22c55e' : '#f97316' %>; color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;">
+                    <%= shipment.status ? shipment.status.toUpperCase() : 'IN TRANSIT' %>
+                </span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 2rem;">
+                <div>
+                    <small style="color: gray; display: block; text-transform: uppercase; font-size: 0.7rem;">Sender</small>
+                    <p><strong><%= shipment.sender %></strong></p>
+                </div>
+                <div>
+                    <small style="color: gray; display: block; text-transform: uppercase; font-size: 0.7rem;">Tracking ID</small>
+                    <p style="font-family: monospace; font-size: 0.85rem;"><%= shipment._id %></p>
+                </div>
+                <div>
+                    <small style="color: gray; display: block; text-transform: uppercase; font-size: 0.7rem;">From</small>
+                    <p><%= shipment.pickup %></p>
+                </div>
+                <div>
+                    <small style="color: gray; display: block; text-transform: uppercase; font-size: 0.7rem;">To</small>
+                    <p><%= shipment.delivery %></p>
+                </div>
+            </div>
+
+            <div style="background: #f8fafc; padding: 1.5rem; border-radius: 10px;">
+                <p style="font-weight: bold; margin-bottom: 1.5rem; color: #334155;">Delivery Roadmap</p>
+                
+                <div style="display: flex; justify-content: space-between; position: relative; align-items: center;">
+                    
+                    <div style="text-align: center; z-index: 1;">
+                        <div style="width: 35px; height: 35px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 5px;">✓</div>
+                        <small style="display: block; font-weight: 600;">Booked</small>
+                    </div>
+
+                    <div style="text-align: center; z-index: 1;">
+                        <div style="width: 35px; height: 35px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 5px;">🚚</div>
+                        <small style="display: block; font-weight: 600;">Transit</small>
+                    </div>
+
+                    <div style="text-align: center; z-index: 1;">
+                        <div style="width: 35px; height: 35px; background: <%= (shipment.status === 'Delivered') ? 'var(--primary)' : '#cbd5e1' %>; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 5px;">🏠</div>
+                        <small style="display: block; <%= (shipment.status === 'Delivered') ? 'font-weight: bold;' : 'opacity: 0.5;' %>">Delivered</small>
+                    </div>
+                    
+                    <div style="position: absolute; top: 17px; left: 0; width: 100%; height: 2px; background: #e2e8f0; z-index: 0;"></div>
+                    
+                    <% 
+                        let progressWidth = '50%';
+                        if (shipment.status === 'Delivered') { progressWidth = '100%'; }
+                    %>
+                    <div style="position: absolute; top: 17px; left: 0; width: <%= progressWidth %>; height: 2px; background: var(--primary); z-index: 0;"></div>
+                </div>
+            </div>
+        </div>
+    <% } %>
+</section>
+
+<%- include('partials/footer') %>

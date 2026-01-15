@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TransportLogix | Smart Logistics Management</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <a href="/" class="logo">🚚 TransportLogix</a>
+            
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <nav class="nav-menu" id="nav-menu">
+                <div class="menu-close" id="menu-close">✕</div>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/service">Services</a></li>
+                    <li><a href="/tracking">Tracking</a></li>
+                    <% if (user) { %>
+                        <li><a href="/dashboard">Dashboard</a></li>
+                        <li><a href="/book">Book Shipment</a></li>
+                    <% } else { %>
+                        <li><a href="/book">Book</a></li>
+                    <% } %>
+                    <li><a href="/contact">Contact Us</a></li>
+                </ul>
+
+                <div class="nav-buttons">
+                    <% if (user) { %>
+                        <div class="user-info" style="display: inline-flex; align-items: center; gap: 10px;">
+                            <span style="font-weight: 600; color: #1d4ed8;">Hi, <%= user.name.split(' ')[0] %></span>
+                            <a href="/logout" class="btn login-btn">Logout</a>
+                        </div>
+                    <% } else { %>
+                        <a href="/login" class="btn login-btn">Login</a>
+                        <a href="/register" class="btn cta-btn">Register</a>
+                    <% } %>
+                </div>
+            </nav>
+        </div>
+    </header>

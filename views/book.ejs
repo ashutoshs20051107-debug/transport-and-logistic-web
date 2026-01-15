@@ -1,0 +1,49 @@
+<%- include('partials/header') %>
+
+<section class="hero" style="padding: 3rem 0; min-height: auto;">
+    <div class="container">
+        <h1 style="text-align: center;">Book Your Shipment</h1>
+    </div>
+</section>
+
+<div class="container">
+    <div class="form-container">
+        <% if(success) { %>
+            <div style="background: #dcfce7; color: #166534; padding: 1rem; border-radius: 8px; margin-bottom: 2rem;">
+                <strong>Success!</strong> Your shipment has been booked. <br>
+                <strong>Tracking ID:</strong> <span style="font-family: monospace;"><%= trackingId %></span> <br>
+                <small>Keep this ID safe to track your shipment.</small>
+            </div>
+        <% } %>
+
+        <form action="/book" method="POST">
+            <div class="form-group">
+                <label>Sender Name</label>
+                <input type="text" name="sender" placeholder="Full Name" required>
+            </div>
+            <div class="form-group">
+                <label>Pickup Address</label>
+                <input type="text" name="pickup" placeholder="Street, City, Zip" required>
+            </div>
+            <div class="form-group">
+                <label>Delivery Address</label>
+                <input type="text" name="delivery" placeholder="Street, City, Zip" required>
+            </div>
+            <div class="form-group">
+                <label>Vehicle Type</label>
+                <select name="vehicle">
+                    <option value="Mini Truck">Mini Truck</option>
+                    <option value="Container 20ft">Container 20ft</option>
+                    <option value="Trailer">Trailer</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Shipment Date</label>
+                <input type="date" name="date" required>
+            </div>
+            <button type="submit" class="btn cta-btn" style="width: 100%;">Confirm Booking</button>
+        </form>
+    </div>
+</div>
+
+<%- include('partials/footer') %>

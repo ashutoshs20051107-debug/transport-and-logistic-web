@@ -1,0 +1,83 @@
+<%- include('partials/header') %>
+
+<section class="hero" style="background: var(--primary); padding: 5rem 0; min-height: auto; color: white; text-align: center;">
+    <div class="container">
+        <h1>Contact Our Experts</h1>
+        <p>Whether you have a question about features, pricing, or logistics, our team is ready to help.</p>
+    </div>
+</section>
+
+<section class="container" style="padding: 5rem 1.5rem;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 4rem; align-items: start;">
+        
+        <div>
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--primary);">Get in Touch</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2.5rem;">Fill out the form and our team will get back to you within 24 hours.</p>
+
+            <div style="margin-bottom: 2rem;">
+                <h4 style="margin-bottom: 0.5rem;">📍 Corporate Office</h4>
+                <p style="color: var(--text-muted);">123 Logistics Plaza, BKC, Mumbai, MH 400051</p>
+            </div>
+
+            <div style="margin-bottom: 2rem;">
+                <h4 style="margin-bottom: 0.5rem;">📞 Phone Support</h4>
+                <p style="color: var(--text-muted);">Toll Free: 1800-123-4567<br>Direct: +91 98765 43210</p>
+            </div>
+
+            <div style="margin-bottom: 2rem;">
+                <h4 style="margin-bottom: 0.5rem;">📧 Email Us</h4>
+                <p style="color: var(--text-muted);">support@transportlogix.com<br>sales@transportlogix.com</p>
+            </div>
+
+            <div style="display: flex; gap: 15px; margin-top: 2rem;">
+                <a href="#" style="background: #f1f5f9; padding: 10px; border-radius: 50%; color: var(--primary); width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; text-decoration: none;">f</a>
+                <a href="#" style="background: #f1f5f9; padding: 10px; border-radius: 50%; color: var(--primary); width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; text-decoration: none;">in</a>
+                <a href="#" style="background: #f1f5f9; padding: 10px; border-radius: 50%; color: var(--primary); width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; text-decoration: none;">𝕏</a>
+            </div>
+        </div>
+
+        <div class="service-card" style="padding: 3rem; background: var(--white); border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.05);">
+            <% if (success) { %>
+                <div style="background: #dcfce7; color: #166534; padding: 1.2rem; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #bbf7d0; text-align: center;">
+                    <strong>Message Sent!</strong> Thank you for reaching out. We will contact you shortly.
+                </div>
+            <% } %>
+
+            <form action="/contact" method="POST">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" name="name" placeholder="Enter your name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Work Email</label>
+                    <input type="email" name="email" placeholder="email@company.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Subject</label>
+                    <select name="subject">
+                        <option value="General Inquiry">General Inquiry</option>
+                        <option value="Sales Support">Sales Support</option>
+                        <option value="Technical Issue">Technical Issue</option>
+                        <option value="Partnership">Partnership</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea name="message" rows="5" placeholder="How can we help you?" required style="width: 100%; border-radius: 10px; border: 1.5px solid #e2e8f0; padding: 1rem;"></textarea>
+                </div>
+
+                <button type="submit" class="btn cta-btn" style="width: 100%; padding: 1rem; font-size: 1.1rem; border-radius: 10px;">Send Message</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<div style="width: 100%; height: 450px; background: #eee;">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d120663.30392945203!2d72.8468205!3d19.076008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c69!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1705350000000!5m2!1sen!2sin" 
+            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+</div>
+
+<%- include('partials/footer') %>
