@@ -19,16 +19,15 @@ TransportLogix is a full-stack web application built using **Node.js**, **Expres
 * **Backend**: Node.js, Express.js
 * **Database**: MongoDB (Mongoose ODM)
 * **Tools**: Git, dotenv, Body-parser
+```
 
 ## 📦 Installation & Setup
-
 1. **Clone the repository:**
    ```bash
    git clone [https://github.com/ashutoshs20051107-debug/transport-and-logistic-web.git](https://github.com/ashutoshs20051107-debug/transport-and-logistic-web.git)
    cd transport-and-logistic-web
 
 ```
-
 2. **Install dependencies:**
 ```bash
 npm install
